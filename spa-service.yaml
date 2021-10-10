@@ -4,6 +4,7 @@ metadata:
   labels:
     app: angular-app 
   name: angular-app-service
+  namespace: develop
 spec:
   type: NodePort
   ports:

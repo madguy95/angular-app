@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import { Cookie } from 'ng2-cookies';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from './../environments/environment';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
  
@@ -13,14 +14,20 @@ export class Foo {
 
 @Injectable()
 export class AppService {
-   public clientId = 'client-web';
-   public clientSecret = '274d8ffe-799d-4df4-bf01-d8dc15b24bd5';
-   public redirectUri = 'http://localhost:8089/';
-   public keycloak_host = 'http://192.168.0.123:31080';
-   public keycloak_realm = 'SpringBootKeycloak';
+   public clientId;
+   public clientSecret;
+   public redirectUri;
+   public keycloak_host;
+   public keycloak_realm;
 
   constructor(
-    private _http: HttpClient){}
+    private _http: HttpClient){
+      this.clientId = environment.clientId;
+      this.clientSecret = environment.clientSecret;
+      this.redirectUri = environment.redirectUri;
+      this.keycloak_host = environment.keycloak_host;
+      this.keycloak_realm = environment.keycloak_realm;
+    }
 
   retrieveToken(code){
     let params = new URLSearchParams();   
